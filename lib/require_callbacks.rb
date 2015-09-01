@@ -1,4 +1,4 @@
-require "require_callbacks/version"
+require 'require_callbacks/version'
 
 module RequireCallbacks
   # Your code goes here...

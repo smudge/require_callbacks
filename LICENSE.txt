@@ -1,4 +1,4 @@
-Copyright (c) 2015 Smudge
+Copyright (c) 2015 Nathan Griffith
 
 MIT License
 

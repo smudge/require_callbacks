@@ -8,8 +8,17 @@ Gem::Specification.new do |spec|
   spec.version       = RequireCallbacks::VERSION
   spec.authors       = ['smudge']
   spec.email         = ['nathan@ngriffith.com']
-  spec.summary       = %w(TODO: Write a short summary. Required.)
-  spec.description   = %w(TODO: Write a longer description. Optional.)
+  spec.summary       = <<-END.gsub("\n", ' ').gsub!(/[[:space:]]+/, ' ').strip
+    Convenient hooks to help prevent loading unnecessary gems and
+    configuration code.
+  END
+  spec.description   = <<-END.gsub("\n", ' ').gsub!(/[[:space:]]+/, ' ').strip
+    This gem gives you convenient hooks around calls to `load`, `require`, and
+    `require_relative`, which can be used to define configuration or setup code
+    that will eventually be run when the library is actually loaded. This helps
+    prevent loading unnecessary gems and configuration code in contexts where
+    they are not needed.
+  END
   spec.homepage      = ''
   spec.license       = 'MIT'
 

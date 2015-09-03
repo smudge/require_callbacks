@@ -1,9 +1,9 @@
 # require_callbacks
 
-This gem gives you convenient hooks around calls to `load`, `require`, and `require_relative`,
-which can be used to define configuration or setup code that will eventually be run when the
-library is actually loaded. This helps prevent loading unnecessary gems and configuration code in
-contexts where they are not needed.
+This gem gives you convenient hooks around calls to `require`, which can be used to define
+configuration or setup code that will eventually be run when the library is actually loaded.
+This helps prevent loading unnecessary gems and configuration code in contexts where they
+are not needed.
 
 ## Basic Example
 
@@ -55,29 +55,16 @@ Lastly, don't forget to execute:
 
 ## Callbacks
 
-`require_callbacks` adds the following methods, which are wrapped around `load`, `require`, and
-`require_relative` (respectively). Note that the `after_require` callbacks will only be run the
-*first* time (when `require` returns true), while `after_load` and all `before_` callbacks will
-be run *every* time.
+`require_callbacks` adds the following methods, which are wrapped around `require`.
+Note that the `after_require` callbacks will only be run the *first* time (when `require`
+returns true), while `before_require` will be run *every* time.
 
 ```ruby
-after_load('myfile.rb') do
-  # always run
-end
 after_require('mygem') do
   # run once
 end
-after_require_relative('./myfile') do
-  # run once
-end
 
-before_load('myfile.rb') do
-  # always run
-end
 before_require('mygem') do
-  # always run
-end
-before_require_relative('./myfile') do
   # always run
 end
 ```
@@ -85,7 +72,13 @@ end
 ## Warnings
 
 This gem messes with standard `Kernal` methods, so use at your own risk! There may be compatibility
-issues with anything else that modifies `load`, `require`, and `require_relative`.
+issues with anything else that modifies `require`.
+
+## Todo
+
+* Add support for `require_relative`
+* Add support for `load`
+* Recognize when different arguments resolve to the same path (e.g. 'my_lib' vs 'my_lib.rb')
 
 ## Contributing
 

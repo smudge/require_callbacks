@@ -71,7 +71,7 @@ end
 
 ## Warnings
 
-This gem messes with standard `Kernal` methods, so use at your own risk! There may be compatibility
+This gem messes with standard `Kernel` methods, so use at your own risk! There may be compatibility
 issues with anything else that modifies `require`.
 
 ## Todo

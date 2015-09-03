@@ -13,11 +13,10 @@ Gem::Specification.new do |spec|
     configuration code.
   END
   spec.description   = <<-END.gsub("\n", ' ').gsub!(/[[:space:]]+/, ' ').strip
-    This gem gives you convenient hooks around calls to `load`, `require`, and
-    `require_relative`, which can be used to define configuration or setup code
-    that will eventually be run when the library is actually loaded. This helps
-    prevent loading unnecessary gems and configuration code in contexts where
-    they are not needed.
+    This gem gives you convenient hooks around calls to `require` which can be
+    used to define configuration or setup code that will eventually be run when
+    the library is actually loaded. This helps prevent loading unnecessary gems
+    and configuration code in contexts where they are not needed.
   END
   spec.homepage      = ''
   spec.license       = 'MIT'

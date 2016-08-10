@@ -21,7 +21,7 @@ define the block that must be run after the gem is loaded:
 
 ```ruby
 after_require('inky') do
-  Inky.authorize!(ENV['MY_INKY_KEY']) }
+  Inky.authorize!(ENV['MY_INKY_KEY'])
 end
 ```
 

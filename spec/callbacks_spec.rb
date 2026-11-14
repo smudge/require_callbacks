@@ -56,4 +56,24 @@ describe RequireCallbacks do
       expect(@count).to eq(2)
     end
   end
+  describe 'callbacks across receivers' do
+    let(:loader) { Object.new }
+
+    before do
+      @before_count = 0
+      @after_count = 0
+      before_require(file_name) { @before_count += 1 }
+      after_require(file_name) { @after_count += 1 }
+    end
+
+    it 'runs registered callbacks when a different object requires the file' do
+      expect(loader.send(:require, file_name)).to eq(true)
+      expect(@before_count).to eq(1)
+      expect(@after_count).to eq(1)
+
+      expect(loader.send(:require, file_name)).to eq(false)
+      expect(@before_count).to eq(2)
+      expect(@after_count).to eq(1)
+    end
+  end
 end

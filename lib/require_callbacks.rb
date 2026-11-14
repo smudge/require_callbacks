@@ -1,23 +1,22 @@
 require 'require_callbacks/version'
 
 module RequireCallbacks
+  BEFORE_CALLBACKS = {}
+  AFTER_CALLBACKS = {}
+
   def after_require(name, &block)
-    @after_require ||= {}
-    @after_require[name] ||= []
-    @after_require[name] << block
+    (AFTER_CALLBACKS[name] ||= []) << block
   end
 
   def before_require(name, &block)
-    @before_require ||= {}
-    @before_require[name] ||= []
-    @before_require[name] << block
+    (BEFORE_CALLBACKS[name] ||= []) << block
   end
 
   def require(*args)
-    @after_require ||= {}
-    @before_require ||= {}
-    (@before_require[args.first] || []).each(&:call)
-    super && !!(@after_require[args.first] || []).each(&:call)
+    (BEFORE_CALLBACKS[args.first] || []).each(&:call)
+    loaded = super
+    (AFTER_CALLBACKS[args.first] || []).each(&:call) if loaded
+    loaded
   end
 end
 

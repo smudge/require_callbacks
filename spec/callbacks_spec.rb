@@ -16,6 +16,18 @@ describe RequireCallbacks do
     expect(RequireCallbacks::VERSION).not_to be nil
   end
 
+  describe 'callback registration without a block' do
+    it 'rejects after_require without changing callbacks' do
+      expect { after_require(file_name) }.to raise_error(ArgumentError, 'callback block required')
+      expect(RequireCallbacks::AFTER_CALLBACKS).not_to have_key(file_name)
+    end
+
+    it 'rejects before_require without changing callbacks' do
+      expect { before_require(file_name) }.to raise_error(ArgumentError, 'callback block required')
+      expect(RequireCallbacks::BEFORE_CALLBACKS).not_to have_key(file_name)
+    end
+  end
+
   describe '#require' do
     subject { require(file_name) }
 

@@ -5,10 +5,12 @@ module RequireCallbacks
   AFTER_CALLBACKS = {}
 
   def after_require(name, &block)
+    raise ArgumentError, 'callback block required' unless block
     (AFTER_CALLBACKS[name] ||= []) << block
   end
 
   def before_require(name, &block)
+    raise ArgumentError, 'callback block required' unless block
     (BEFORE_CALLBACKS[name] ||= []) << block
   end
 

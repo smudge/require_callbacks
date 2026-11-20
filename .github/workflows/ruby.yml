@@ -8,14 +8,15 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: ['3.2', '3.3', '3.4', '4.0']
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
-      - name: Install test dependencies
-        run: |
-          gem install rspec -v '~> 3.3' --no-document
-          gem install simplecov --no-document
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
       - name: Run specs
-        run: ruby -Ilib -S rspec spec
+        run: bundle exec rspec spec

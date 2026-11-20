@@ -1,4 +1,4 @@
-# require_callbacks [![Build Status](https://img.shields.io/travis/smudge/require_callbacks.svg)](https://travis-ci.org/smudge/require_callbacks) [![Code Climate](https://img.shields.io/codeclimate/github/smudge/require_callbacks.svg)](https://codeclimate.com/github/smudge/require_callbacks) [![Test Coverage](https://img.shields.io/codeclimate/coverage/github/smudge/require_callbacks.svg)](https://codeclimate.com/github/smudge/require_callbacks/coverage)
+# require_callbacks [![Ruby tests](https://github.com/smudge/require_callbacks/actions/workflows/ruby.yml/badge.svg)](https://github.com/smudge/require_callbacks/actions/workflows/ruby.yml) [![RubyGems downloads](https://img.shields.io/gem/dt/require_callbacks.svg)](https://rubygems.org/gems/require_callbacks)
 
 This gem gives you convenient hooks around calls to `require`, which can be used to define
 configuration or setup code that will eventually be run when the library is actually loaded.

@@ -8,8 +8,11 @@ describe RequireCallbacks do
     File.open("spec/#{file_name}.rb", 'w') do |f|
       f.write("class #{file_name.upcase}; end")
     end
-    example.run
-    File.delete("spec/#{file_name}.rb")
+    begin
+      example.run
+    ensure
+      File.delete("spec/#{file_name}.rb") if File.exist?("spec/#{file_name}.rb")
+    end
   end
 
   it 'has a version number' do

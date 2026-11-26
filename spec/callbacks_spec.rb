@@ -71,6 +71,30 @@ describe RequireCallbacks do
       expect(@count).to eq(2)
     end
   end
+  describe 'callbacks with .rb suffixes' do
+    it 'runs callbacks registered without the suffix when requiring with it' do
+      before_count = 0
+      after_count = 0
+      before_require(file_name) { before_count += 1 }
+      after_require(file_name) { after_count += 1 }
+
+      expect(require("#{file_name}.rb")).to eq(true)
+      expect(before_count).to eq(1)
+      expect(after_count).to eq(1)
+    end
+
+    it 'runs callbacks registered with the suffix when requiring without it' do
+      before_count = 0
+      after_count = 0
+      before_require("#{file_name}.rb") { before_count += 1 }
+      after_require("#{file_name}.rb") { after_count += 1 }
+
+      expect(require(file_name)).to eq(true)
+      expect(before_count).to eq(1)
+      expect(after_count).to eq(1)
+    end
+  end
+
   describe 'callbacks across receivers' do
     let(:loader) { Object.new }
 
